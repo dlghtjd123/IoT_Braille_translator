@@ -9,4 +9,7 @@ interface LetterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(letters: List<LetterEntity>)
+
+    @Query("SELECT * FROM letter_table WHERE text = :text LIMIT 1")
+    suspend fun getLetterByText(text: String): LetterEntity?
 }
